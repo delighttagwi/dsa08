@@ -16,7 +16,7 @@
   .card { background: #fff; border: 1px solid #dde3ea; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
   .top { display: flex; align-items: center; gap: 10px; }
   .badge { min-width: 46px; text-align: center; padding: 6px 0; border-radius: 6px; font-size: 12px; font-weight: 700; color: #fff; background: #64748b; }
-  .badge.pdf { background: #dc2626; } .badge.js, .badge.pts { background: #ca8a04; }
+  .badge.pdf { background: #dc2626; } .badge.js, .badge.pts { background: #ca8a04; } .badge.pkt { background: #0891b2; }
   .badge.py, .badge.java { background: #16a34a; } .badge.docx { background: #2563eb; }
   .badge.xlsx { background: #15803d; } .badge.zip { background: #7c3aed; }
   .name { font-size: 14px; font-weight: 600; word-break: break-all; }
@@ -31,7 +31,7 @@
 <div class="wrap">
   <header>
     <h1>Downloads</h1>
-    <button class="btn" id="all">Download all (11)</button>
+    <button class="btn" id="all">Download all</button>
   </header>
 
   <div class="grid" id="grid"></div>
@@ -44,21 +44,19 @@
 
 <script>
 /* ====== EDIT THIS LIST ======
-   Put your 11 files in the same folder as this index.html (the root folder),
+   Put your files in the same folder as this index.html (the root folder),
    then set each src to the file name or path, e.g. "3.pdf" or "files/code.py".
    Any file type works. Add a title if you want a friendlier name. */
 const FILES = [
-  { title: "Lab Manual",          src: "3" },
-  { title: "Experiment 1 PDF",    src: "1.pdf" },
-  { title: "Experiment 2 PDF",    src: "2.pdf" },
-  { title: "Experiment 3 PDF",    src: "3.pdf" },
-  { title: "Packet Tracer Exp 3", src: "builder3.pts" },
-  { title: "Packet Tracer Exp 4", src: "builder4.pts" },
-  { title: "Packet Tracer Exp 5", src: "builder5.pts" },
-  { title: "Packet Tracer Exp 6", src: "builder6.pts" },
-  { title: "UDP Server",          src: "udp_server.py" },
-  { title: "UDP Client",          src: "udp_client.py" },
-  { title: "Combined Script",     src: "packet_tracer_experiments.js" }
+  { title: "Lab Manual (PDF)",        src: "3.pdf" },
+  { title: "Packet Tracer Builder",   src: "Builder.pts" },
+  { title: "Exp 3 Switch Lab",        src: "cn3.pkt" },
+  { title: "Exp 3 Switch Script",     src: "exp3_switch.js" },
+  { title: "Exp 4 Router Script",     src: "exp4_router.js" },
+  { title: "Exp 4 Router Script v2",  src: "exp4_router_v2.js" },
+  { title: "Exp 5 NAT Script",        src: "exp5_nat.js" },
+  { title: "Exp 6 RIP Script",        src: "exp6_rip.js" },
+  { title: "Test Lab",                src: "testlab.pkt" }
 ];
 
 const grid = document.getElementById("grid");
@@ -107,6 +105,7 @@ document.getElementById("pclose").onclick = e => {
 };
 
 // Download all: clicks each link with a short delay (browser may ask to allow multiple downloads)
+document.getElementById("all").textContent = "Download all (" + FILES.length + ")";
 document.getElementById("all").onclick = () => {
   document.querySelectorAll("a.dl").forEach((a, i) => setTimeout(() => a.click(), i * 600));
 };
